@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tic Tac Toe</title>
+  <!-- Connect CSS + JS -->
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+
+<h2>Tic Tac Toe Game</h2>
+
+<table>
+  <tr>
+    <td onclick="makeMove(this, 0)"></td>
+    <td onclick="makeMove(this, 1)"></td>
+    <td onclick="makeMove(this, 2)"></td>
+  </tr>
+  <tr>
+    <td onclick="makeMove(this, 3)"></td>
+    <td onclick="makeMove(this, 4)"></td>
+    <td onclick="makeMove(this, 5)"></td>
+  </tr>
+  <tr>
+    <td onclick="makeMove(this, 6)"></td>
+    <td onclick="makeMove(this, 7)"></td>
+    <td onclick="makeMove(this, 8)"></td>
+  </tr>
+</table>
+
+<p id="status">Player X's turn</p>
+<button onclick="resetGame()">Reset Game</button>
+
+</body>
+</html>
