@@ -1,0 +1,83 @@
+<html>
+<head>
+  <title>Tic Tac Toe</title>
+  <script type="text/javascript">
+    var currentPlayer = "X";
+    var board = ["", "", "", "", "", "", "", "", ""];
+    var gameOver = false;
+
+    function makeMove(cell, index) {
+      if (cell.innerHTML == "" && !gameOver) {
+        cell.innerHTML = currentPlayer;
+        board[index] = currentPlayer;
+
+        if (checkWinner()) {
+          document.getElementById("status").innerHTML = "Player " + currentPlayer + " wins!";
+          gameOver = true;
+        } else if (board.indexOf("") == -1) {
+          document.getElementById("status").innerHTML = "It's a draw!";
+          gameOver = true;
+        } else {
+          currentPlayer = (currentPlayer == "X") ? "O" : "X";
+          document.getElementById("status").innerHTML = "Player " + currentPlayer + "'s turn";
+        }
+      }
+    }
+
+    function checkWinner() {
+      var winPatterns = [
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,3,6],[1,4,7],[2,5,8],
+        [0,4,8],[2,4,6]
+      ];
+      for (var i = 0; i < winPatterns.length; i++) {
+        var a = winPatterns[i][0];
+        var b = winPatterns[i][1];
+        var c = winPatterns[i][2];
+        if (board[a] != "" && board[a] == board[b] && board[a] == board[c]) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function resetGame() {
+      var cells = document.getElementsByTagName("td");
+      for (var i = 0; i < cells.length; i++) {
+        cells[i].innerHTML = "";
+      }
+      board = ["", "", "", "", "", "", "", "", ""];
+      currentPlayer = "X";
+      gameOver = false;
+      document.getElementById("status").innerHTML = "Player X's turn";
+    }
+  </script>
+</head>
+<body bgcolor="lightyellow">
+
+<font color="blue" size="5">Tic Tac Toe Game</font><br><br>
+
+<table border="1" cellpadding="20" cellspacing="5">
+  <tr>
+    <td onclick="makeMove(this, 0)" align="center" width="60" height="60"></td>
+    <td onclick="makeMove(this, 1)" align="center" width="60" height="60"></td>
+    <td onclick="makeMove(this, 2)" align="center" width="60" height="60"></td>
+  </tr>
+  <tr>
+    <td onclick="makeMove(this, 3)" align="center" width="60" height="60"></td>
+    <td onclick="makeMove(this, 4)" align="center" width="60" height="60"></td>
+    <td onclick="makeMove(this, 5)" align="center" width="60" height="60"></td>
+  </tr>
+  <tr>
+    <td onclick="makeMove(this, 6)" align="center" width="60" height="60"></td>
+    <td onclick="makeMove(this, 7)" align="center" width="60" height="60"></td>
+    <td onclick="makeMove(this, 8)" align="center" width="60" height="60"></td>
+  </tr>
+</table>
+
+<br>
+<font id="status" color="green" size="4">Player X's turn</font><br><br>
+<input type="button" value="Reset Game" onclick="resetGame()">
+
+</body>
+</html>
